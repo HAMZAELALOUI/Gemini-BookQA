@@ -104,7 +104,7 @@ def main():
                 st.success("Done")
 
     # Main content area for displaying chat messages
-    st.title("Chat with your Books using BookQA 📚")
+    st.title("Chat with Books using BookQA 📚")
     st.write("Welcome to the chat!")
     st.sidebar.button('Clear Chat History', on_click=clear_chat_history)
 
