@@ -75,21 +75,21 @@ def user_input(user_question):
         , return_only_outputs=True)
 
     print(response)
-    st.write("Answer: ", response["output_text"])
+    st.write(response["output_text"])
 
 
 def main():
-    st.set_page_config("Chat with PDF")
-    st.header("Chat with PDFs using Gemini")
+    st.set_page_config("BookQA")
+    st.header("Chat with your Books using BookQA")
 
-    user_question = st.text_input("Ask a question to answer from the PDF files")
+    user_question = st.text_input("Ask a question to answer from the Books")
 
     if user_question:
         user_input(user_question)
 
     with st.sidebar:
-        st.title("Upload your PDFs")
-        pdf_docs = st.file_uploader("Upload the PDF files you want answers to your questions from and click on the Submit & Process Button. If you do not have any PDFs in mind, download PDF from Google Cloud on MLOps from the link and ask question like 'What is Experimentation?' - https://services.google.com/fh/files/misc/practitioners_guide_to_mlops_whitepaper.pdf",
+        st.title("Upload your Books")
+        pdf_docs = st.file_uploader("Upload the PDF files you want answers to your questions from and click on the Submit & Process Button. If you do not have any PDFs in mind",
         accept_multiple_files=True)
         if st.button("Submit & Process"):
             with st.spinner("Processing..."):
