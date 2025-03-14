@@ -54,7 +54,7 @@ def get_conversational_chain():
     Answer:
     """
 
-    model = ChatGoogleGenerativeAI(model="gemini-pro",
+    model = ChatGoogleGenerativeAI(model="gemini-1.5-flash",
                                    client=genai,
                                    temperature=0.3,
                                    )
@@ -66,7 +66,7 @@ def get_conversational_chain():
 
 def clear_chat_history():
     st.session_state.messages = [
-        {"role": "assistant", "content": "upload some Books and ask me a question"}]
+        {"role": "assistant", "content": "upload document and ask me a question"}]
 
 
 def user_input(user_question):
@@ -87,7 +87,7 @@ def user_input(user_question):
 
 def main():
     st.set_page_config(
-        page_title="BookQA",
+        page_title="RAG",
         page_icon="📚"
     )
 
@@ -95,7 +95,7 @@ def main():
     with st.sidebar:
         st.title("Menu:")
         pdf_docs = st.file_uploader(
-            "Upload your Books and Click on the Submit & Process Button", accept_multiple_files=True)
+            "Upload your Document and Click on the Submit & Process Button", accept_multiple_files=True)
         if st.button("Submit & Process"):
             with st.spinner("Processing..."):
                 raw_text = get_pdf_text(pdf_docs)
@@ -104,7 +104,7 @@ def main():
                 st.success("Done")
 
     # Main content area for displaying chat messages
-    st.title("Chat with Books using BookQA 📚")
+    st.title("Chat with Documents using Gemini RAG 📚")
     st.write("Welcome to the chat!")
     st.sidebar.button('Clear Chat History', on_click=clear_chat_history)
 
@@ -113,7 +113,7 @@ def main():
 
     if "messages" not in st.session_state.keys():
         st.session_state.messages = [
-            {"role": "assistant", "content": "upload Books and ask me a question"}]
+            {"role": "assistant", "content": "upload Document and ask me a question"}]
 
     for message in st.session_state.messages:
         with st.chat_message(message["role"]):
