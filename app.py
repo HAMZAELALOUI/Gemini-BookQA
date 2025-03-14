@@ -108,33 +108,33 @@ def user_input(user_question):
 
 def main():
     st.set_page_config(
-        page_title="RAG",
-        page_icon="📚"
+        page_title="Assistance sur la Loi de Finances ",
+        page_icon="🏦"
     )
 
     # Sidebar for uploading PDF files
     with st.sidebar:
         st.title("Menu:")
         pdf_docs = st.file_uploader(
-            "Upload your Document and Click on the Submit & Process Button", accept_multiple_files=True)
-        if st.button("Submit & Process"):
-            with st.spinner("Processing..."):
+            "Téléchargez votre document et cliquez sur le bouton Soumettre & Traiter", accept_multiple_files=True)
+        if st.button("Soumettre et Traiter"):
+            with st.spinner("En cours de traitement..."):
                 raw_text = get_pdf_text(pdf_docs)
                 text_chunks = get_text_chunks(raw_text)
                 get_vector_store(text_chunks)
                 st.success("Done")
 
     # Main content area for displaying chat messages
-    st.title("Chat with Documents using Gemini RAG 📚")
-    st.write("Welcome to the chat!")
-    st.sidebar.button('Clear Chat History', on_click=clear_chat_history)
+    st.title("Votre Assistant IA pour la Loi de Finances 📊")
+    st.write("Bienvenue dans le chat !")
+    st.sidebar.button('Réinitialiser la conversation', on_click=clear_chat_history)
 
     # Chat input
     # Placeholder for chat messages
 
     if "messages" not in st.session_state.keys():
         st.session_state.messages = [
-            {"role": "assistant", "content": "upload Document and ask me a question"}]
+            {"role": "assistant", "content": "Téléchargez un document et posez-moi une question"}]
 
     for message in st.session_state.messages:
         with st.chat_message(message["role"]):
